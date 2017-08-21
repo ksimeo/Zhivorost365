@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 
-@Service("customerService")
+@Service("custServ")
 @Repository
 @Transactional
 public class CustomerServImpl implements CustomerService {
@@ -25,7 +25,7 @@ public class CustomerServImpl implements CustomerService {
 
     @Transactional(readOnly = true)
     @Override
-    public Customer getCustomer(int id) {
+    public Customer getCustomer(String id) {
         return repository.findOne(id);
     }
 

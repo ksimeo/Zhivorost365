@@ -9,11 +9,13 @@ import java.util.Date;
 public class Order implements Serializable {
     private static final long serialVersionUID = 1423213359968345418L;
     private Long id;
+    private int version;
     private Date regDate;
     private Customer customer;
     private Product product;
     private int amount;
-    private int version;
+    private Date viewDate;
+
 
     public Order() {
         //NOP
@@ -35,6 +37,16 @@ public class Order implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+    @Version
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
+    }
+
 
     @Temporal(TemporalType.DATE)
     @Column(name = "reg_date")
@@ -75,13 +87,14 @@ public class Order implements Serializable {
         this.amount = amount;
     }
 
-    @Version
-    public int getVersion() {
-        return version;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "view_date")
+    public Date getViewDate() {
+        return viewDate;
     }
 
-    public void setVersion(int version) {
-        this.version = version;
+    public void setViewDate(Date viewDate) {
+        this.viewDate = viewDate;
     }
 
     @Override

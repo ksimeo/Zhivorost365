@@ -8,7 +8,7 @@
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>/WEB-INF/app-context/root-context.xml</param-value>
+        <param-value>/WEB-INF/spring-config/root-app-context.xml</param-value>
     </context-param>
 
     <!--For properly ciryllic encoding  -->
@@ -50,9 +50,9 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-    <!--<listener>-->
-        <!--<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>-->
-    <!--</listener>-->
+    <listener>
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+    </listener>
 
     <!--<welcome-file-list>-->
         <!--<welcome-file>/WEB-INF/views/jsp/index.jsp</welcome-file>-->
@@ -63,7 +63,7 @@
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>/WEB-INF/app-context/root-context.xml</param-value>
+            <param-value>/WEB-INF/spring-config/root-app-context.xml</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>

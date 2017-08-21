@@ -4,6 +4,6 @@ import com.ksimeo.nazaru.zhivorost365.domain.models.Customer;
 import org.springframework.data.repository.CrudRepository;
 
 
-public interface CustomerRepository extends CrudRepository<Customer, Integer> {
+public interface CustomerRepository extends CrudRepository<Customer, String> {
 
 }

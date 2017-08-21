@@ -10,4 +10,5 @@ public interface OrderService {
     Order getOrder(Long id);
     List<Order> getAllOrders();
     List<Order> getOrdersPage(int pageNumb);
+    List<Order> getFreshOrders();
 }

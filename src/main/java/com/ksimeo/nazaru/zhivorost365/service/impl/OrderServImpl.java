@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 
-@Service("orderService")
+@Service("ordServ")
 @Repository
 @Transactional
 public class OrderServImpl implements OrderService {
@@ -28,18 +28,21 @@ public class OrderServImpl implements OrderService {
     public Order getOrder(Long id) {
         return ordDao.findOne(id);
     }
-
-
+    
     @Transactional(readOnly=true)
     @Override
     public List<Order> getAllOrders() {
         return (List<Order>)ordDao.findAll();
     }
 
-
     @Transactional(readOnly = true)
     @Override
     public List<Order> getOrdersPage(int pageNumb) {
         return null;
+    }
+
+    @Override
+    public List<Order> getFreshOrders() {
+        return ordDao.getAllNew();
     }
 }

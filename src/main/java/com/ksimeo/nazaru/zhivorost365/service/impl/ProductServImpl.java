@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service("productService")
+@Service("prodServ")
 @Repository
 @Transactional
 public class ProductServImpl implements ProductService {
