@@ -29,7 +29,7 @@
       <td>
             <input type="button" value="${labelYes}" onclick="document.location='/calculator'"/>
             &nbsp;
-            <input type="button" value="${labelNo}" onclick="document.location='/order'"/>
+            <input type="button" value="${labelNo}" onclick="document.location='/order/0/0'"/>
           </h3>
         </form>
       </td>

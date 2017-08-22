@@ -1,4 +1,4 @@
-package com.ksimeo.nazaru.zhivorost365.web.controllers;
+package com.ksimeo.nazaru.zhivorost365.web;
 
 import com.ksimeo.nazaru.zhivorost365.domain.dto.PhoneDTO;
 import com.ksimeo.nazaru.zhivorost365.domain.models.Customer;
@@ -8,7 +8,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -28,7 +30,9 @@ public class PhoneController {
     private OrderService ordServ;
 
     @RequestMapping(value = {"/","/index"}, method = RequestMethod.GET)
-    public String showWelcomePage(HttpServletRequest req) {
+    public String index(HttpServletRequest req, Model uiModel) {
+        String usersHost = req.getHeader("host");
+        logger.info("index() {}", usersHost);
         Cookie[] cookies = req.getCookies();
         if (cookies != null && cookies.length > 0) {
             for (Cookie cookie : cookies) {
@@ -37,13 +41,14 @@ public class PhoneController {
                 }
             }
         }
-        String usersHost = req.getHeader("host");
-        logger.info("user {} has entered on main page", usersHost);
+        PhoneDTO phoneDTO = new PhoneDTO();
+        uiModel.addAttribute("phoneForm", phoneDTO);
         return "public/index";
     }
 
     @RequestMapping(value = "/phone", method = RequestMethod.POST)
-    public String checkPhoneNumber(@Valid PhoneDTO model, BindingResult bindingResult, HttpServletRequest req, HttpServletResponse resp) {
+    public String checkPhoneNumber(@ModelAttribute("phoneForm") @Valid PhoneDTO model, BindingResult bindingResult, HttpServletRequest req,
+                                   HttpServletResponse resp) {
         System.out.println("Full phone number:" + model.getPhone());
         String phoneNumb = model.getPhone();
         logger.info("Phone number {} has been entered", phoneNumb);

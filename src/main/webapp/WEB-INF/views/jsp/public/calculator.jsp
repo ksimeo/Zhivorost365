@@ -23,6 +23,8 @@
 <!DOCTYPE html>
 <div lang="uk">
 
+  <jsp:include page="../fragments/header.jsp" />
+
   <div class="container">
     <br/>
     <h3 class="title">${labelCalculatorTitle}</h3>

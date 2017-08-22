@@ -1,4 +1,4 @@
-package com.ksimeo.nazaru.zhivorost365.web.controllers;
+package com.ksimeo.nazaru.zhivorost365.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,5 +19,10 @@ public class RedirectController {
     @RequestMapping(value = "/gretitude")
     public String showGratitude() {
         return "public/gratitude";
+    }
+
+    @RequestMapping(value = "/admin")
+    public String adminIndex() {
+        return "redirect:/admin/orders";
     }
 }

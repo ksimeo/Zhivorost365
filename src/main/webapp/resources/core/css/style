@@ -1,4 +1,20 @@
-.body {
+
+body {
     color: darkslategray;
     background-color: lightcyan
+}
+
+#amount {
+    width: 2em;
+    opacity: 1;
+}
+
+#dimension {
+    width: 4em;
+    opacity: 1;
+}
+
+#product {
+    width: 4em;
+    opacity: 1;
 }

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <!--<http use-expressions="true">-->
+        <!--<intercept-url pattern='/WEB-INF' access='permitAll' />-->
+        <!--<form-login login-page="/contacts" authentication-failure-url="/security/loginfail"-->
+                    <!--default-target-url="/contacts" />-->
+        <!--<logout logout-success-url="/contacts"/>-->
+    <!--</http>-->
+
+    <http auto-config="true" use-expressions="false">
+        <form-login login-processing-url="/static/j_spring_security_check"
+                    login-page="/private/login"
+                    authentication-failure-url="/login?login_error=t"/>
+        <intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
+        <intercept-url pattern="/admin/**" requires-channel="https"/>
+    </http>
+
+    <authentication-manager>
+        <authentication-provider>
+            <user-service>
+                <user name="user" password="user" authorities="ROLE_ADMIN" />
+            </user-service>
+        </authentication-provider>
+    </authentication-manager>
+
+</beans:beans>

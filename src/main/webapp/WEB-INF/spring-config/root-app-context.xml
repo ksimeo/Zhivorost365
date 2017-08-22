@@ -17,7 +17,8 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 
     <import resource="webmvc-config.xml"/>
-    <import resource="persist-config.xml" />
+    <import resource="classpath:META-INF/spring/persist-config.xml" />
+    <import resource="classpath:META-INF/spring/security-context.xml" />
 
     <context:component-scan base-package="com.ksimeo.nazaru.zhivorost365" />
 

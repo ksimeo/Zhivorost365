@@ -19,7 +19,7 @@ public class Customer implements Serializable {
     private List<Order> orders;
 
     public Customer() {
-        //NOP
+        regDate = new Date();
     }
 
     public Customer(String phoneNumber, String name, String surname, String email, Date regDate, Date lastOrderDate) {

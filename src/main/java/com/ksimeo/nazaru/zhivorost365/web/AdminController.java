@@ -1,4 +1,4 @@
-package com.ksimeo.nazaru.zhivorost365.web.controllers;
+package com.ksimeo.nazaru.zhivorost365.web;
 
 import com.ksimeo.nazaru.zhivorost365.domain.models.Order;
 import com.ksimeo.nazaru.zhivorost365.service.OrderService;

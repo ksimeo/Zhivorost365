@@ -1,5 +1,6 @@
-package com.ksimeo.nazaru.zhivorost365.web.controllers;
+package com.ksimeo.nazaru.zhivorost365.web;
 
+import com.ksimeo.nazaru.zhivorost365.domain.dto.CustomerDTO;
 import com.ksimeo.nazaru.zhivorost365.domain.dto.PhoneDTO;
 import com.ksimeo.nazaru.zhivorost365.domain.models.Customer;
 import com.ksimeo.nazaru.zhivorost365.service.CustomerService;
@@ -7,7 +8,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -26,16 +29,26 @@ public class CustomerController {
     private CustomerService custServ;
 
     @RequestMapping
-    public String showCustomerForm() {
+    public String showCustomerForm(Model model, HttpServletRequest req) {
+        logger.debug("showCustomerForm()");
+        Customer cust = new Customer();
+        HttpSession session = req.getSession();
+        PhoneDTO phone = (PhoneDTO)session.getAttribute("phone");
+        cust.setPhoneNumber(phone.getPhone());
+        model.addAttribute("customerForm", cust);
         return "public/customer";
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String saveCustomer(@Valid Customer model, BindingResult bindingResult, HttpServletRequest req,
-                               HttpServletResponse resp) {
+    public String saveCustomer(@ModelAttribute("customerForm") @Valid CustomerDTO model, BindingResult bindingResult,
+                               HttpServletRequest req, HttpServletResponse resp) {
         HttpSession session = req.getSession();
         PhoneDTO phone = (PhoneDTO) session.getAttribute("phone");
-        model.setPhoneNumber(phone.getPhone());
+        Customer cust = new Customer();
+        cust.setPhoneNumber(phone.getPhone());
+        cust.setName(model.getName());
+        cust.setSurname(model.getSurname());
+        cust.setEmail(model.getEmail());
         session.setAttribute("customer", model);
         Cookie cookie1 = new Cookie("domain", phone.getDomain());
         cookie1.setMaxAge(2*7*3600);

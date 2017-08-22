@@ -15,7 +15,6 @@
 <spring:message code="label_your_name" var="labelYourName"/>
 <spring:message code="label_your_surname" var="labelYourSurname"/>
 <spring:message code="label_customer_email" var="labelCustomerEmail"/>
-<spring:message code="" var=""/>
 
 <!DOCTYPE html>
 <html lang="uk">
@@ -30,9 +29,9 @@
   <h3>${labelCustomerSubtitle}</h3>
 
   <form:form class="form-horizontal" method="post"
-             modelAttribute="orderForm" action="/order">
+             modelAttribute="customerForm" action="/customer">
 
-  <form:hidden path="id" />
+  <%--<form:hidden path="id" />--%>
 
   <spring:bind path="name">
       <div class="form-group ${status.error ? 'has-error' : ''}">
